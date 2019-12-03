@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="style.css" />
+	<script type="text/javascript" src="index.js"></script>
+</head>
+
+<body class="main">
+
+	<div class="header">
+		<img src="logo.jpg" alt="Persistent Systems Limited" class="logo">
+		<div class="text">
+			<h2 class="H1">Actionable Insights</h2>
+		</div>
+	</div>
+
+	<div class="containerHolder">
+
+		<div class="container">
+			<div>
+				<input type="radio" id="r1" name="selectionRadio" value="dir" checked="checked" onchange="handleRadioChange()"> Select Directory
+				<input type="radio" id="r2" name="selectionRadio" value="files" onchange="handleRadioChange()"> Select Files
+			</div>
+			<br>
+			<div class="radioDiv">
+				<form id="folderForm" action="/testData" method="POST">
+
+					<input type="file" id="folderItem" name="param" onchange="handleUpload(event)" webkitdirectory>
+
+					<br>
+					<br>
+
+
+				</form>
+				<form id="filesForm" action="/testData" method="POST" hidden>
+
+					<input type="file" id="fileItem" name="param" onchange="handleUpload(event)" accept=".csv" multiple>
+
+					<br>
+					<br>
+
+				</form>
+			</div>
+			<input type="button" class="button" value="Submit" onclick="sendData()">
+			<input type="button" class="button" value="Reset" onclick="resetData()" >
+			<div>
+				<div id="fileDisplay">Selected files :</div>
+				<div id="display"></div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="outputContainer">
+			<p>
+				Summary:
+			</p>
+			<div id="outputContent" />
+		</div>
+	</div>
+</body>
+
+</html>
