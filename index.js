@@ -13,12 +13,17 @@ function handleRadioChange() {
 
 function sendData() {
 
+	document.getElementById("loader").style.display = "block";
+
+	//setTimeout(spinner,5000);
+
 	let form = (document.getElementById('r1').checked == true) ? document.getElementById("folderForm") : document.getElementById("filesForm");
 
 	let xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
+			spinner();
 			console.log((this.responseText));
 			document.getElementById("outputContent").innerHTML = this.responseText;
 		}
@@ -35,11 +40,17 @@ function sendData() {
 function resetData() {
 	document.getElementById('fileDisplay').style.display = "none";
 	document.getElementById('display').style.display = "none";
+	document.getElementById("outputContent").style.display = "none";
 	document.getElementById("display").innerHTML = '';
 	document.getElementById("fileItem").value = '';
 	document.getElementById("folderItem").value = '';
 	document.getElementById("r1").checked = "checked";
 	handleRadioChange();
+}
+
+function spinner(){
+	document.getElementById("loader").style.display = "none";
+	document.getElementById("outputContent").style.display = "block";
 }
 
 
@@ -53,7 +64,7 @@ function handleUpload(event) {
 	for (var i = 0; i < myFileList.files.length; i++) {
 		var fileName = myFileList.files[i].name.toLowerCase();
 		if (fileName.endsWith(".csv")) {
-			document.getElementById("display").innerHTML += '<li style="line-height: 25px">' + fileName + '</li>';
+			document.getElementById("display").innerHTML += '<li style="line-height: 25px"; "overflow-y:auto";>' + fileName + '</li>';
 		}
 	}
     
