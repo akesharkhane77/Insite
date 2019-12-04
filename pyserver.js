@@ -64,9 +64,13 @@ function callTestData(req, res) {
         // Takes stdout data from script which executed 
         // with arguments and send this data to res object 
         process.stdout.on('data', function(data) {
-            //data.toString() 
-            res.send(data.toString()); 
+            res.write(data);
+        });
+        process.stdout.on('end', function () {
+            console.log('Finished collecting data chunks.');
+            res.end();
         }); 
+        
     });
 } 
   
