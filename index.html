@@ -28,26 +28,20 @@
 
 					<input type="file" id="folderItem" name="param" onchange="handleUpload(event)" webkitdirectory>
 
-					<br>
-					<br>
-
 
 				</form>
 				<form id="filesForm" action="/testData" method="POST" hidden>
 
 					<input type="file" id="fileItem" name="param" onchange="handleUpload(event)" accept=".csv" multiple>
 
-					<br>
-					<br>
-
 				</form>
 			</div>
-			<input type="button" class="button" value="Submit" onclick="sendData()">
-			<input type="button" class="button" value="Reset" onclick="resetData()" >
 			<div class="fileListDisplay">
 				<div id="fileDisplay">Selected files :</div>
 				<div id="display"></div>
 			</div>
+			<input type="submit" class="button" value="Submit" onclick="sendData()" disabled>
+			<input type="button" class="button" value="Reset" onclick="resetData()" >
 		</div>
 		<br>
 		<br>

@@ -12,28 +12,32 @@ html, body{
 	box-shadow: 3px 3px #DCDCDC;
 	border-radius: 7px;
 	font-size: 16px;
-
 }
 
+.container{
+	max-height: calc(100% - 30px);
+}
 
 .innerContainer{
 	padding: 10px;
-	margin : 10px 0px 10px 0px;
+	margin: 10px 0px 10px 0px;
 	width: 95%;
-	word-break: break-all;
+	word-break: break-word;
 }
 
 .outputContainer {
 	padding: 15px;
 	text-align: left;
 	margin-left: 20px; 
-	width: 75%;
+	width: 65%;
 	border: 2px solid #808080;
 	box-shadow: 3px 3px #DCDCDC;
 	border-radius: 7px;
 	font-size: 22px;
 	flex-wrap: nowrap;
+	max-height: calc(100% - 30px);
 	overflow-y: auto;
+	align-items: center;
 }
 
 .header {
@@ -61,7 +65,7 @@ html, body{
 	width: 90%;
 }
 
-.button {
+.button{
 	display: inline-block;
 	border-radius: 5px;
 	background-color: #0099CC;
@@ -72,19 +76,24 @@ html, body{
 	min-width: 20%;
 	transition: all 0.5s;
 	cursor: pointer;
-	margin: 5px;
-	padding: 2px 6px;
+    margin: 5px;
+	height: 7%;
+	white-space: nowrap;
 }
 
-.button:hover{
+.button:hover:enabled{
 	background-color: #00688B;
+}
+
+.button:disabled{
+	background-color: grey;
 }
 
 .containerHolder{
 	display: flex;
 	width: 100%;
+	max-height: calc(100% - 50px);
 	height: 100%;
-	max-height:calc(100% - 50px);
 }
 
 #display{
@@ -94,7 +103,7 @@ html, body{
 	padding-left: 7px;
 	position: relative;
 	overflow-y: auto;
-	max-height: 100%;
+	max-height: 80%;
 }
 
 #fileDisplay{
@@ -148,6 +157,20 @@ html, body{
 }
 
 .fileListDisplay{
-	max-height:calc(100% - 100px);
-	height:60%;
+	max-height: calc(100% - 100px);
+	height: 60%;
 }
+
+#outputContent{
+	padding: 15px;
+}
+
+.unorderedList{
+	list-style-type:none;
+}
+
+.listItem{
+	line-height: 25px; 
+	overflow-y:auto;
+}
+
