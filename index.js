@@ -30,14 +30,15 @@ function sendData() {
 	}
 	//To get the checked files data array
 	let checkedFiles = []
-	for(let i =0; i<filesData.length; i++){
-		for(let j=0; j<filesArray.length; j++){
-			if(filesArray[j] == filesData[i].name){
-				checkedFiles.push(filesData[i]);
+	for(let i =0; i<filesArray.length; i++){
+		for(let j=0; j<filesData.length; j++){
+			if(filesArray[i] == filesData[j].name){
+				checkedFiles.push(filesData[j]);
 				break;
 			}
 		}
 	}
+	console.log("fileData::"+checkedFiles.files);
 	
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
@@ -86,51 +87,15 @@ function handleUpload(event) {
 	document.getElementById("display").innerHTML += '<ul id="sortable" class="unorderedList" ></ul>';
 	for (let i = 0; i < myFileList.files.length; i++) {
 		let fileName = myFileList.files[i].name;
-		document.getElementById("sortable").innerHTML += '<li class="listItem" id="listItem' + i +'" draggable="true" ondragstart="dragStarted(event)" ondragover="draggingOver(event)" ondrop="dropped(event)" ondragleave="dragLeave(event)"></li>';
+		document.getElementById("sortable").innerHTML += '<li class="listItem" id="listItem' + i +'"></li>';
 		//document.getElementById("listItem' + i + '")
 		if (fileName.endsWith(".csv")) {
 
 			document.getElementById("listItem"+i).innerHTML += '<input class="fileList" type="checkbox" id="fileList' + i + '" tabindex=' +i+ ' onchange="checkboxClicked()"><label for="fileList' + i +'">' + fileName + '</label><br>';
 		}
 	}
-}
-
-let source;
-
-function dragStarted(event) {
-	source = event.target;
-	event.dataTransfer.setData("text/html", source);
-}
-
-function draggingOver(event) {
-	event.preventDefault();
-    let bounding = event.target.getBoundingClientRect();
-    let offset = bounding.y + (bounding.height/2);
-    if ( event.clientY - offset > 0 ) {
-        event.target.style['border-bottom'] = 'solid 1px grey';
-        event.target.style['border-top'] = '';
-    } else {
-        event.target.style['border-top'] = ' ';
-        event.target.style['border-bottom'] = '';
-    }
-}
-
-function dragLeave(event) {
-	let target = event.target;
-    target.style['border-bottom'] = '';
-    target.style['border-top'] = '';
-};
-
-function dropped(event) {
-	event.preventDefault();
-    let target = event.target;
-    if ( target.style['border-bottom'] !== '' ) {
-        target.style['border-bottom'] = '';
-        target.parentNode.insertBefore(source, event.target.nextSibling);
-    } else {
-        target.style['border-top'] = '';
-        target.parentNode.insertBefore(source, event.target);
-    }
+	$("#sortable").sortable();
+	$( "#sortable" ).disableSelection();
 }
 
 function checkboxClicked(){
@@ -142,4 +107,5 @@ function checkboxClicked(){
     document.querySelectorAll('input[type="submit"]')[0].disabled = false;
   }
 }
+
 

@@ -167,10 +167,12 @@ html, body{
 
 .unorderedList{
 	list-style-type:none;
+	padding-left: 0;
 }
 
 .listItem{
 	line-height: 25px; 
 	overflow-y:auto;
 }
+
 
